@@ -1,8 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-
-# Create your models here.
+from django.urls import reverse
 
 # Database table
 class Category(models.Model):
@@ -17,6 +14,9 @@ class Category(models.Model):
     # string representation of the class
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('category-page', args=[self.slug])
     
 
 # Database table
@@ -42,4 +42,7 @@ class Product(models.Model):
     # string representation of the class
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('product-page', args=[self.slug])
     
